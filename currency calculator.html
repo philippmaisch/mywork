@@ -1,0 +1,61 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+div {
+  border: 1px solid black;
+  width: 400px;
+  height: 120px;
+}
+</style>
+
+<body>
+
+	currency value: <input type="text" id="inputID1" value="Initial Value"><br>
+
+
+
+<input type="button" name="myButton" value="CAD -> EUR">
+<input type="button" name="myButton2" value="EUR -> CAD">
+
+<div id="output">
+
+</div>
+</body>
+
+<script>
+$("input[name=myButton]").on("click",runProgram)
+
+function runProgram(evt) {
+
+  
+  var x1 = $("#inputID1").val();
+  var y1 = parseInt(x1);
+  var y3 = 0.667526; 
+  var y4 = 1.49863; 
+
+  
+  var output = "CAD->EUR: " + y1 * y3 ; 
+
+
+  $("#output").html(output);
+  
+  
+}
+
+$("input[name=myButton2]").on("click",runProgram2)
+
+function runProgram2(evt) {
+
+  
+  var x1 = $("#inputID1").val();
+  var y1 = parseInt(x1);
+  var y3 = 0.667526; 
+  var y4 = 1.49863; 
+
+  
+  var output = "EUR->CAD: " + y1 * y4;
+
+  $("#output").html(output);
+  
+  
+}
+</script>

@@ -1,0 +1,41 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+div {
+  border: 1px solid black;
+  width: 400px;
+  height: 120px;
+}
+</style>
+
+<body>
+
+	side a: <input type="text" id="inputID1" value="Initial Value"><br>
+	side b: <input type="text" id="inputID2" value="Initial Value"><br>
+
+<input type="button" name="myButton" value="calculate hypotenuse">
+
+<div id="output">
+
+</div>
+</body>
+
+<script>
+$("input[name=myButton]").on("click",runProgram)
+
+function runProgram(evt) {
+
+  
+  var x1 = $("#inputID1").val();
+  var x2 = $("#inputID2").val();
+  var y1 = parseInt(x1);  
+  var y2 = parseInt(x2);  
+  var y3 = Math.sqrt((y1 * y1) + (y2 * y2))
+  
+
+	
+  var output = y3;
+
+  $("#output").html(output);
+  
+}
+</script>

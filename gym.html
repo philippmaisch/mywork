@@ -1,0 +1,81 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+div {
+  border: 1px solid #333;
+  background-color: #eee;
+  height: 150px;
+  width: 90%;
+  padding: 6px;
+  border-radius: 3px;
+}
+
+</style>
+
+<body>
+
+<div id="msgBox">
+
+</div>
+<br>
+freeweights <input type="checkbox" id='box1'><br>
+treadmills <input type="checkbox" id='box2'><br>
+cycling machines <input type="checkbox" id='box3'><br>
+rowing machines <input type="checkbox" id='box4'><br>
+elliptical trainers <input type="checkbox" id='box5'><br>
+<br>
+<input type="button" name="submit" value="SUBMIT"><br>
+
+
+</div>
+</body>
+
+<script>
+
+$("input[name=submit]").on("click", inpClicked)
+
+
+function inpClicked(evt) {
+
+{
+      
+        if ($("input[id=box1]").prop("checked") )
+      		var box1 = "freeweights <br> "
+      	else
+      		var box1 = ""
+    }
+{
+      
+        if ($("input[id=box2]").prop("checked") )
+      		var box2 = "treadmills <br> "
+      	else
+      		var box2 = ""
+    }
+{
+      
+        if ($("input[id=box3]").prop("checked") )
+      		var box3 = "cycling machines <br> "
+      	else
+      		var box3 = ""
+    }
+{
+      
+        if ($("input[id=box4]").prop("checked") )
+      		var box4 = "rowing machines <br> "
+      	else
+      		var box4 = ""
+    }
+{
+      
+        if ($("input[id=box5]").prop("checked") )
+      		var box5 = "elliptical trainers <br> "
+      	else
+      		var box5 = ""
+    }
+
+
+ var output = "You selected:" + "<br>"  + box1 +  box2 +  box3  + box4  + box5;
+
+ $("#msgBox").html(output);
+ 
+ }
+</script>

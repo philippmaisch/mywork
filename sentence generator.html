@@ -1,0 +1,42 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+div {
+  border: 1px solid black;
+  width: 400px;
+  height: 120px;
+}
+</style>
+
+<body>
+
+	noun: <input type="text" id="inputID1" value="Initial Value"><br>
+	verb: <input type="text" id="inputID2" value="Initial Value"><br>
+	adjective: <input type="text" id="inputID3" value="Initial Value"><br>
+
+<input type="button" name="myButton" value="Click Button">
+
+<div id="output">
+
+</div>
+</body>
+
+<script>
+$("input[name=myButton]").on("click",runProgram)
+
+function runProgram(evt) {
+
+  
+  var x1 = $("#inputID1").val();
+  var x2 = $("#inputID2").val();
+  var x3 = $("#inputID3").val();
+ 
+  
+  var output = "The " + x1;
+  output += " " + x2;
+  output += " a " + x3;
+  output += " stone. " ;
+  $("#output").html(output);
+  
+  
+}
+</script>
