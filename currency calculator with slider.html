@@ -1,0 +1,71 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+div {
+  border: 1px solid black;
+  width: 400px;
+  height: 120px;
+}
+.slider {
+  width: 134px;
+  height: 25px;
+  border: 1px solid #666;
+}
+</style>
+
+<body>
+
+	currency value: <input type="number" step= "0.01" id="inputID1" ><br>
+
+	decimals calculated: <div class="slider">
+	<input type="range" min="1" max="4" name="myRange" id="output2">
+	</div>
+  
+
+	<input type="button" name="myButton" value="CAD -> EUR">
+	<input type="button" name="myButton2" value="EUR -> CAD">
+
+<div id="output">
+</div>
+
+</body>
+
+<script>
+
+	$("input[name=myButton]",).on("click",runProgram)
+
+	function runProgram(evt) {
+
+		var decimals = document.getElementById("output2").value;
+		var y1 = $("#inputID1").val();
+		var y3 = y1 * 0.66752; 
+		var fin = y3.toFixed(decimals);
+		var y4 = y1 * 1.49863; 
+		var fin2 = y4.toFixed(decimals);
+  
+	var output = "CAD->EUR: " + fin; 
+
+
+  $("#output").html(output);
+  
+  
+}
+
+	$("input[name=myButton2]").on("click",runProgram2)
+
+function runProgram2(evt) {
+
+  
+		var decimals = document.getElementById("output2").value;
+		var y1 = $("#inputID1").val();
+		var y3 = y1 * 0.66752; 
+		var fin = y3.toFixed(decimals);
+		var y4 = y1 * 1.49863; 
+		var fin2 = y4.toFixed(decimals);
+  
+	var output = "EUR->CAD: " + fin2;
+
+  $("#output").html(output);
+  
+  
+}
+</script>
