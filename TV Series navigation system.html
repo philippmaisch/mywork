@@ -1,0 +1,45 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+
+</style>
+
+<body>
+
+<select id='Season'>
+	<option default value='0'>--</option>
+	<option value='1'>Season 1</option>
+	<option value='2'>Season 2</option>
+	<option value='3'>Season 3</option>
+
+</select>
+<select id='Episode'>
+	<option default>--</option>
+	<option value='1'>Episode 1</option>
+	<option value='2'>Episode 2</option>
+	<option value='3'>Episode 3</option>
+	<option value='4'>Episode 4</option>
+	<option value='5'>Episode 5</option>
+	<option value='6'>Episode 6</option>
+</select>
+
+  <input type="button" name="myButton" value="submit">
+  
+<br>
+
+<span id="outputSpan">
+  
+</span>
+</body>
+
+<script>
+
+$("input[name=myButton]").on("click",doSelection)
+
+function doSelection(evt) {
+  console.log(evt);  
+  var output = "You selected" + " " + $('#Season :selected').text() + " " + $('#Episode :selected').text();
+  $("#outputSpan").html(output);
+
+}
+
+</script>

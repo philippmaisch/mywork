@@ -1,0 +1,60 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+div {
+  border: 1px solid #333;
+  background-color: #eee;
+  height: 10px;
+  width: 20%;
+  padding: 6px;
+  border-radius: 3px;
+}
+
+</style>
+
+<select id='crypto'>
+    <option default >no cryptocurrency selected</option>
+	<option value='1'>BTC</option>
+	<option value='2'>ETH</option>
+	<option value='3'>XRP</option>
+	
+	<br>
+</select>
+<body>
+<br>
+Price in USD:	<div id="price" > </div> <br> 
+Change in %:    <div id="change" > </div> <br>
+M. Cap in Billion USD:    <div id="mcap" ></div> <br>
+</body>
+
+<script>
+
+$("#crypto").on("change",doSelection);
+
+function doSelection(evt) {
+var select = $('#crypto :selected').text();
+
+switch(select) {
+
+  case 'BTC':
+  $("#price").html("5215");
+  $("#change").html("3.01"); 
+  $("#mcap").html("90"); 
+  break;
+	
+  case 'ETH':
+  $("#price").html("166.33");
+  $("#change").html("3.82"); 
+  $("#mcap").html("17.27");   
+  break;
+	
+  case 'XRP':
+  $("#price").html("0.32");
+  $("#change").html("1.34"); 
+  $("#mcap").html("13.51");    
+  break;
+	
+}
+}
+</script>
+
+
