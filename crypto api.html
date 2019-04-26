@@ -1,0 +1,38 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+div {
+  border: 1px solid black;
+  width: 200;
+  height: 20px;
+}
+</style>
+
+<body>
+Ethereum to <br><br>
+USD: <div id="ID1"></div><br>
+EUR: <div id="ID2"></div><br>
+CAD: <div id="ID3"></div><br>
+
+</body>
+
+<script>
+
+setInterval(function(){
+$.ajax({
+  url: "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,EUR,CAD",
+  success: function(response) {
+    console.log(response);
+    $("#ID1").html(response.USD);
+	$("#ID2").html(response.EUR);
+	$("#ID3").html(response.CAD);
+
+  },
+  error: function(response,status,exception) {
+  	console.log(response);
+    console.log(status);
+    console.log(exception)
+  }
+}
+)
+}, 1000);
+</script>
