@@ -1,0 +1,49 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+div {
+  border: 1px solid black;
+  width: 200;
+  height: 20px;
+}
+</style>
+
+<body>
+<input style="float: right;" type="button" name="myButton2" value="Logout">
+
+name: <input id="inputID1"><br>
+password: <input id="inputID2"><br><br>
+
+your name: <div id="output"></div><br>
+your password: <div id="output2"></div><br>
+<br>
+<input type="button" name="myButton" value="Login"><br>
+<br>
+
+</body>
+
+<script>
+
+$("input[name=myButton]").on("click",runProgram)
+$("input[name=myButton2]").on("click",runLogout)
+
+function runProgram(evt) {
+
+  var name = $("#inputID1").val();
+  var password = $("#inputID2").val();
+ 
+localStorage.setItem("Name",name);
+localStorage.setItem("Password",password);
+$("#output").html(localStorage.getItem("Name"));
+$("#output2").html(localStorage.getItem("Password"));
+}
+
+$(document).ready(function(){
+
+ $("#output").html(localStorage.getItem("Name"));
+ $("#output2").html(localStorage.getItem("Password"));
+})
+
+function runLogout(evt) {
+localStorage.clear();
+}
+</script>

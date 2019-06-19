@@ -1,0 +1,56 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+div {
+  border: 1px solid black;
+  width: 200;
+  height: 20px;
+}
+</style>
+
+<body>
+
+Your Name: <input id="inputID1"><br>
+Country of Origin: <input id="inputID2"><br>
+Bank: <input id="inputID3" ><br>
+
+<input type="button" name="myButton" value="Submit"><br>
+<br>
+
+<div  id = "output">
+</div>
+<br>
+<div  id = "output2">
+</div>
+<br>
+<div  id = "output3">
+</div>
+
+</body>
+
+<script>
+
+$("input[name=myButton]").on("click",runProgram)
+
+function runProgram(evt) {
+
+  
+  var x1 = $("#inputID1").val();
+  var x2 = $("#inputID2").val();
+  var x3 = $("#inputID3").val();
+ 
+  
+localStorage.setItem("Name",x1);
+localStorage.setItem("Country",x2);
+localStorage.setItem("Bank",x3);
+
+}
+
+$(document).ready(function(){
+
+ $("#output").html(localStorage.getItem("Name"));
+ $("#output2").html(localStorage.getItem("Country"));
+ $("#output3").html(localStorage.getItem("Bank"));
+ 
+})
+
+</script>
