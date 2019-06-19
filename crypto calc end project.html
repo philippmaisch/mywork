@@ -1,0 +1,226 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+
+body
+{
+    background-image: url('https://media1.tenor.com/images/93e53bf5f5555cbdff7e028e53bb8b22/tenor.gif?itemid=10365440');
+    background-size: cover;
+    height: 100vh;
+    padding:0;
+    margin:0;
+}
+
+div 
+{
+	border: 3px ;
+	width: 500;
+	height: 20px;
+	border: 0px;
+	text-decoration: underline;
+} 
+
+</style>
+
+<body>
+
+	<center>
+	<font color="#ffffff" size="50"> <b><strong> Cryptocurrency Calculator </strong></b> </font>
+	</center> 
+	<br><br>
+
+	<center>
+	
+		<font color="#ffffff"><b> Choose coin: </b></font> 
+			<select id='Coin'>
+				<option default>BTC</option>
+				<option value='1'>ETH</option>
+				<option value='2'>XRP</option>
+			</select><br><br>	
+
+		<font color="#ffffff"><b>Date of purchase:</b></font>
+			<input type="date" id="date1" value="2016-01-01" min="2016-01-01" max="2019-05-31"><br><br>
+	   
+		<font color="#ffffff"><b>Purchase volume in USD:</b></font> 
+			<input id="Volume"></input><br><br>
+		
+			<input type="button" name="calculate" value="Calculate return on equity if sold:"><input type="date" id="date2" value="2016-01-01" min="2016-01-01" max="2019-06-10"><br><br>
+			
+		<font color="#ffffff">
+			<b><div id="output"></div></b>
+		</font>
+		
+		<br><br>
+		
+		<font color="#ffffff">
+			<b><span color="#ffffff" id="live" ></span>   <span color="#ffffff" id="live2" ></span>   <span color="#ffffff" id="live3" ></span></b>
+		</font>
+	
+	</center>
+
+</body>
+
+<script>
+$(document).ready(function(){
+	setInterval(function(){
+	var BTClive;
+	var ETHlive;
+	var XRPlive;
+		$.ajax({
+				url: "https://api.cryptonator.com/api/full/btc-usd",
+				success: function(liveBTC) {
+					console.log(liveBTC);
+					var BTClive = liveBTC.ticker.price
+					$("#live").html("BTC » " + BTClive + " USD /// ");
+
+				},
+				error: function(liveBTC,status,exception) {
+					console.log(liveBTC);
+					console.log(status);
+					console.log(exception)
+		}	
+		})
+		$.ajax({
+				url: "https://api.cryptonator.com/api/full/eth-usd",
+				success: function(liveETH) {
+					console.log(liveETH);
+					var ETHlive = liveETH.ticker.price
+					$("#live2").html("ETH » " + ETHlive + " USD /// ");
+
+				},
+				error: function(liveETH,status,exception) {
+					console.log(liveETH);
+					console.log(status);
+					console.log(exception)
+		}	
+		})
+		$.ajax({
+				url: "https://api.cryptonator.com/api/full/xrp-usd",
+				success: function(liveXRP) {
+					console.log(liveXRP);
+					var XRPlive = liveXRP.ticker.price
+					$("#live3").html("XRP » " + XRPlive + " USD");
+
+					
+				},
+				error: function(liveXRP,status,exception) {
+					console.log(liveXRP);
+					console.log(status);
+					console.log(exception)
+		}	
+		})
+		
+}, 3000);
+
+$("input[name=calculate]").on("click",start)
+	function start(evt) {
+		var date = $(date1).val();	
+		var coin = $('#Coin :selected').text();
+		var volume = $("#Volume").val();
+		var BTCnow;
+		var ETHnow;
+		var XRPnow;
+						
+							$.ajax({
+							url: "http://api.coinlayer.com/api/" + $(date2).val() +"?access_key=7ddd63ef6de839f9183723aeb0ef9ddd&symbols=BTC,ETH,XRP",
+							success: function(pricenow) {
+								console.log(pricenow);
+								BTCnow = pricenow.rates.BTC;
+								ETHnow = pricenow.rates.ETH;
+								XRPnow = pricenow.rates.XRP;
+								$("#output").html("*LOADING*");
+							},
+							error: function(pricenow,status,exception) {
+								console.log(pricenow);
+								console.log(status);
+								console.log(exception)
+							}	
+							})
+	
+	setTimeout(function() {
+		switch (coin) {
+
+			case 'BTC' : {
+				
+					$.ajax({
+						url: "http://api.coinlayer.com/api/" + $(date1).val() +"?access_key=7ddd63ef6de839f9183723aeb0ef9ddd&symbols=BTC,ETH,XRP",
+						success: function(response) {
+
+							console.log(response);
+							var BTCdate = response.rates.BTC;
+							var a = volume / BTCdate;
+							var b = BTCnow * a;
+							var c = b - volume;
+							if (b < volume) {
+								$("#output").html(c.toFixed(2));
+							}
+							else {
+								$("#output").html(b.toFixed(2));
+							}
+			  },
+					error: function(response,status,exception) {
+						console.log(response);
+						console.log(status);
+						console.log(exception)
+			  }
+			  })
+			  
+			} break;
+			  
+			case 'ETH': {
+
+					$.ajax({
+						url: "http://api.coinlayer.com/api/" + $(date1).val() +"?access_key=7ddd63ef6de839f9183723aeb0ef9ddd&symbols=BTC,ETH,XRP",
+						success: function(response) {
+
+							var ETHdate = response.rates.ETH;
+							var a = volume / ETHdate;
+							var b = ETHnow * a;
+							var c = b - volume;
+							if (b < volume) {
+								$("#output").html(c.toFixed(2));
+							}
+							else {
+								$("#output").html(b.toFixed(2));
+							}
+			  },
+					error: function(response,status,exception) {
+						console.log(response);
+						console.log(status);
+						console.log(exception)
+			  }
+			  })
+			  
+			} break;
+
+			case 'XRP': {
+
+					$.ajax({
+						url: "http://api.coinlayer.com/api/" + $(date1).val() +"?access_key=7ddd63ef6de839f9183723aeb0ef9ddd&symbols=BTC,ETH,XRP",
+						success: function(response) {
+
+							var XRPdate = response.rates.XRP;
+							var a = volume / XRPdate;
+							var b = XRPnow * a;
+							var c = b - volume;
+							if (b < volume) {
+								$("#output").html(c.toFixed(2));
+							}
+							else {
+								$("#output").html(b.toFixed(2));
+							}
+			  }, 
+					error: function(response,status,exception) {
+						console.log(response);
+						console.log(status);
+						console.log(exception)
+			  }
+			  })
+			  
+			} break;
+
+		}
+	}, 1000)
+	}
+
+})
+</script>
